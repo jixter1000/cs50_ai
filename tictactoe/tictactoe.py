@@ -8,6 +8,13 @@ X = "X"
 O = "O"
 EMPTY = None
 
+def count(board):
+    countnones = 0
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == EMPTY:
+                countnones += 1
+    return countnones % 2 
 
 def initial_state():
     """
@@ -22,7 +29,7 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    if (board == initial_state() or player(board) == O or terminal(board) == True):
+    if (board == initial_state() or count(board) == 1 or terminal(board) == True):
         return X
     else:
         return O
@@ -33,12 +40,14 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
+    listofActions = []
     for i in range(len(board)):
         for j in range(len(board[i])):
             if board[i][j] != X and board[i][j] != O:
-                return (i,j)
+                listofActions.append((i, j))
     if terminal(board) == True:
-        return (i,j)
+        listofActions.append((i,j))
+    return listofActions
     raise NotImplementedError
 
 
@@ -46,6 +55,10 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
+    #Implement copy of board and X or O to the copy add else to throw exception
+    if (player(board) == X and board[i][j] == None):
+        
+    elif (player(board) == O and board[i]):
     raise NotImplementedError
 
 
