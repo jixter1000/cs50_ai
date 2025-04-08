@@ -22,6 +22,10 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
+    if (board == initial_state() or player(board) == O or terminal(board) == True):
+        return X
+    else:
+        return O
     raise NotImplementedError
 
 
@@ -29,6 +33,12 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] != X and board[i][j] != O:
+                return (i,j)
+    if terminal(board) == True:
+        return (i,j)
     raise NotImplementedError
 
 
